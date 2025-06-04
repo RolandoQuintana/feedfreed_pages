@@ -1,0 +1,389 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>FeedFreed Timeline — Roadmap & Progress</title>
+        <meta name="description" content="Follow FeedFreed's journey from development to launch and beyond. See our past milestones, current progress, and future plans.">
+        <link href="https://framerusercontent.com/images/Dmx5rNBzLXfDP215cc1Dbz6Bk.svg" rel="icon" media="(prefers-color-scheme: light)">
+        <link href="https://framerusercontent.com/images/kr07xpsY6C72wamd82uHrG7TPAc.png" rel="icon" media="(prefers-color-scheme: dark)">
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <style>
+            :root {
+                --background-start: #2B2440;
+                --background-end: #111013;
+                --text: #F5F4FA;
+                --secondary: #B6AFCB;
+                --card-bg: rgba(24, 21, 34, 0.95);
+                --accent-gradient: linear-gradient(90deg, #A259FF 0%, #F24E1E 100%);
+                --accent: #A259FF;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                background: radial-gradient(ellipse at 60% 0%, var(--background-start) 0%, var(--background-end) 100%);
+                color: var(--text);
+                font-family: 'DM Sans', 'Inter', sans-serif;
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 1.2rem;
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+
+            h1 {
+                font-size: 2.7rem;
+                margin-bottom: 1rem;
+                font-weight: 700;
+                letter-spacing: -1px;
+                color: var(--text);
+            }
+
+            .subtitle {
+                color: var(--secondary);
+                font-size: 1.25rem;
+                font-weight: 400;
+            }
+
+            .timeline {
+                position: relative;
+                padding: 1rem 0;
+            }
+
+            .timeline::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 3px;
+                height: 100%;
+                background: linear-gradient(180deg, #A259FF 0%, #F24E1E 100%);
+                opacity: 0.18;
+            }
+
+            .timeline-section {
+                margin-bottom: 1.5rem;
+            }
+
+            .timeline-section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+                font-weight: 700;
+                color: var(--text);
+            }
+
+            .timeline-item {
+                background: var(--card-bg);
+                border-radius: 14px;
+                padding: 1rem 1rem 1rem 2rem;
+                margin-bottom: 0.8rem;
+                position: relative;
+                box-shadow: 0 2px 12px 0 rgba(42, 36, 64, 0.12);
+                border: 1px solid rgba(162, 89, 255, 0.06);
+                cursor: pointer;
+            }
+
+            .timeline-item::before {
+                content: '';
+                position: absolute;
+                left: -1rem;
+                top: 1.2rem;
+                width: 0.8rem;
+                height: 0.8rem;
+                border-radius: 50%;
+                background: var(--accent-gradient);
+                box-shadow: 0 0 0 4px rgba(162, 89, 255, 0.10);
+            }
+
+            .timeline-date {
+                color: var(--secondary);
+                font-weight: 600;
+                margin-bottom: 0.2rem;
+                font-size: 0.98rem;
+            }
+
+            .timeline-title {
+                font-size: 1.08rem;
+                font-weight: 600;
+                margin-bottom: 0.2rem;
+                color: var(--text);
+            }
+
+            .timeline-description {
+                color: var(--secondary);
+                font-size: 0.98rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.25s cubic-bezier(0.4,0,0.2,1), opacity 0.2s, margin-top 0.2s;
+                opacity: 0;
+                margin-top: 0;
+                pointer-events: none;
+            }
+
+            .timeline-item.open .timeline-description {
+                max-height: 500px;
+                opacity: 1;
+                margin-top: 0.2rem;
+                pointer-events: auto;
+            }
+
+            .status {
+                display: inline-block;
+                padding: 0.18rem 0.7rem;
+                border-radius: 1rem;
+                font-size: 0.85rem;
+                margin-bottom: 0.2rem;
+                font-weight: 500;
+                letter-spacing: 0.02em;
+            }
+
+            .status-past {
+                background: rgba(255, 68, 51, 0.13);
+                color: #FF4433;
+            }
+
+            .status-now {
+                background: rgba(162, 89, 255, 0.13);
+                color: #A259FF;
+            }
+
+            .status-future {
+                background: rgba(182, 175, 203, 0.13);
+                color: var(--secondary);
+            }
+
+            .timeline-item-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .dropdown-arrow {
+                transition: transform 0.2s;
+                margin-left: 1rem;
+                font-size: 1.1em;
+                color: var(--secondary);
+            }
+
+            .timeline-item.open .dropdown-arrow {
+                transform: rotate(90deg);
+            }
+
+            @media (max-width: 768px) {
+                .container {
+                    padding: 0.5rem;
+                }
+
+                .timeline::before {
+                    left: 1rem;
+                }
+
+                .timeline-item {
+                    margin-left: 1.2rem;
+                    padding-left: 1.2rem;
+                }
+
+                .timeline-item::before {
+                    left: -1.5rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>FeedFreed Timeline</h1>
+                <p class="subtitle">Our journey from development to launch and beyond</p>
+            </header>
+
+            <div class="timeline">
+                <div class="timeline-section">
+                    <h2>📅 Past Milestones</h2>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-past">Completed</span>
+                                <div class="timeline-date">May 2024</div>
+                                <div class="timeline-title">Development Begins</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">The first lines of FeedFreed were written, with a vision to help people escape doomscrolling and use social media more intentionally.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-past">Completed</span>
+                                <div class="timeline-date">December 2024</div>
+                                <div class="timeline-title">Android Launch (Soft Release)</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">FeedFreed launched on Google Play for early users and feedback.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-past">Completed</span>
+                                <div class="timeline-date">February 2025</div>
+                                <div class="timeline-title">iOS Launch</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">The iOS version became available via TestFlight and later App Store, reaching a broader audience.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <h2>🟢 Now — June 2025</h2>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-now">In Progress</span>
+                                <div class="timeline-title">🎨 UI/UX Redesign</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">A new visual design is being developed with a freelance designer to make the app more polished, intuitive, and modern.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-now">In Progress</span>
+                                <div class="timeline-title">🔧 Performance Tweaks & Bug Fixes</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">Improving responsiveness, link handling, and in-app browsing stability before hard launch.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <h2>🚀 Early July 2025 — Hard Launch & Monetization</h2>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-future">Planned</span>
+                                <div class="timeline-title">🌟 Official Hard Launch</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">FeedFreed will be formally launched with updated visuals and marketing efforts.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-future">Planned</span>
+                                <div class="timeline-title">💵 Begin Monetization</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">Introduction of monetization options to support ongoing development — potentially through premium features, themes, or donations.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <h2>🟡 Next — Post-Launch Features</h2>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-future">Planned</span>
+                                <div class="timeline-title">⏱️ Focus Timers & Timeboxing</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">Add tools to help users set intentional usage limits, like countdown timers and session-based browsing.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-future">Planned</span>
+                                <div class="timeline-title">📅 Scheduled Access</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">Let users schedule times when FeedFreed becomes available (e.g., "Only open Instagram from 6–7 PM").</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-future">Planned</span>
+                                <div class="timeline-title">📲 Home Screen Widgets</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">Add widgets for quick-launch access or usage stats right from the home screen.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <h2>🔵 Later — TBD / Wishlist</h2>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-future">Future</span>
+                                <div class="timeline-title">☁️ Cross-Device Sync</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">Sync preferences and pinned platforms between Android and iOS.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-future">Future</span>
+                                <div class="timeline-title">💡 Offline Reading Mode</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">Save articles or pages to browse later, without internet.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-item-header">
+                            <div>
+                                <span class="status status-future">Future</span>
+                                <div class="timeline-title">🧠 AI Recommendations (Non-Addictive)</div>
+                            </div>
+                            <span class="dropdown-arrow">&#9654;</span>
+                        </div>
+                        <div class="timeline-description">Explore helpful suggestions without addictive algorithms — like mindful reading or curated learning.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.timeline-item').forEach(function(item) {
+                item.addEventListener('click', function(e) {
+                    // Only toggle if not clicking a link inside
+                    if (e.target.tagName.toLowerCase() === 'a') return;
+                    item.classList.toggle('open');
+                });
+            });
+        });
+        </script>
+    </body>
+</html>
